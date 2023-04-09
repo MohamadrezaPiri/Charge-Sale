@@ -17,4 +17,4 @@ def update_seller_credit_after_credit_order(sender, **kwargs):
 @receiver(post_save,sender=CreditOrder)
 def create_transaction_for_credit_order(sender,**kwargs):
     if kwargs['created']:
-        Transaction.objects.create(seller=kwargs['instance'].seller,amount=kwargs['instance'].amount)
+        Transaction.objects.create(seller=kwargs['instance'].seller,amount=kwargs['instance'].amount,type=kwargs['instance'].order_type)
