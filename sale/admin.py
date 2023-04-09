@@ -4,9 +4,6 @@ from .models import SaleOrder, Seller, Transaction, CreditOrder
 
 # Register your models here.
 
-# admin.site.register(Seller)
-admin.site.register(SaleOrder)
-
 
 @admin.register(Seller)
 class SellerAdmin(admin.ModelAdmin):
@@ -21,3 +18,8 @@ class TransactionAdmin(admin.ModelAdmin):
 @admin.register(CreditOrder)
 class CreditOrderAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount', 'order_type']
+
+
+@admin.register(SaleOrder)
+class SaleOrderAdmin(admin.ModelAdmin):
+    list_display=['seller','phone','amount']
