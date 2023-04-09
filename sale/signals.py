@@ -4,7 +4,7 @@ from .models import Transaction, CreditOrder, Transaction, Seller
 
 
 @receiver(post_save, sender=CreditOrder)
-def create_transaction_for_credit_order(sender, **kwargs):
+def update_seller_credit_after_credit_order(sender, **kwargs):
     if kwargs['created']:
         seller = Seller.objects.get(pk=kwargs['instance'].seller.id)
         if kwargs['instance'].order_type == 'WIT':
