@@ -20,6 +20,7 @@ class SaleOrder(models.Model):
 class Transaction(models.Model):
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
     amount = models.IntegerField()
+    type=models.CharField(max_length=3)
 
 
 class CreditOrder(models.Model):
