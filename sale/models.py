@@ -18,12 +18,23 @@ class SaleOrder(models.Model):
 
 
 class Transaction(models.Model):
+    TYPE_DEPOSIT = 'DEP'
+    TYPE_WITHDRAW = 'WIT'
+    TYPE_SALE = 'SALE'
+
+    TYPE_CHOICES = [
+        (TYPE_DEPOSIT, 'Deposit'),
+        (TYPE_WITHDRAW, 'Withdraw'),
+        (TYPE_SALE, 'Sale')
+    ]
+
+
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
     amount = models.IntegerField()
-    type=models.CharField(max_length=3)
+    type=models.CharField(max_length=4,choices=TYPE_CHOICES,default=TYPE_SALE)
 
 
-class CreditOrder(models.Model):
+class CreditOrder(models.Model): 
     TYPE_DEPOSIT = 'DEP'
     TYPE_WITHDRAW = 'WIT'
 
