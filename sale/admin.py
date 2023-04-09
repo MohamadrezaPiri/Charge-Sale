@@ -15,7 +15,7 @@ class SellerAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ['seller', 'amount']
+    list_display = ['seller', 'amount','type']
 
 
 @admin.register(CreditOrder)
