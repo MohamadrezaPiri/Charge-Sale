@@ -20,6 +20,8 @@ class TransactionAdmin(admin.ModelAdmin):
 @admin.register(CreditOrder)
 class CreditOrderAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount', 'order_type']
+    search_fields=['seller']
+    list_filter=['seller']
 
 
 @admin.register(SaleOrder)
