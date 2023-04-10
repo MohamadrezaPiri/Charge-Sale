@@ -14,7 +14,7 @@ class SellerAdmin(admin.ModelAdmin):
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount','type']
-
+    search_fields=['seller']
 
 @admin.register(CreditOrder)
 class CreditOrderAdmin(admin.ModelAdmin):
