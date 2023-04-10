@@ -38,7 +38,7 @@ class Transaction(models.Model):
 
 
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
-    amount = models.IntegerField()
+    amount = models.PositiveIntegerField()
     type=models.CharField(max_length=4,choices=TYPE_CHOICES,default=TYPE_SALE)
     status=models.CharField(max_length=3,choices=STATUS_CHOICES,default=STATUS_COMPLETED)
 
