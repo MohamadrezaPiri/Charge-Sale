@@ -13,13 +13,13 @@ class SellerAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ['seller', 'amount','type']
+    list_display = ['seller', 'amount','type','status']
     search_fields=['seller']
     list_filter=['seller']
 
 @admin.register(CreditOrder)
 class CreditOrderAdmin(admin.ModelAdmin):
-    list_display = ['seller', 'amount', 'order_type']
+    list_display = ['seller', 'amount', 'order_type','status']
     search_fields=['seller']
     list_filter=['seller']
 

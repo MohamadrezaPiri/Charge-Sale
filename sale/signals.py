@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Transaction, CreditOrder, Transaction, Seller
+from .models import Transaction, CreditOrder, Transaction, Seller,SaleOrder
 
 
 
@@ -12,9 +12,20 @@ def update_seller_credit_and_create_transaction_after_credit_order(sender, insta
             seller = instance.seller
             amount = instance.amount
             order_type = instance.order_type
+            
+            
             if order_type == 'WIT':
-                seller.credit -= amount
+                if seller.credit >= amount:
+                    seller.credit -= amount
+                    Transaction.objects.create(seller=seller, amount=amount, type=order_type,status='COM')
+                else:
+                    instance.status = 'FAI'
+                    Transaction.objects.create(seller=seller, amount=amount, type=order_type,status='FAI')
             else:
                 seller.credit += amount
+                Transaction.objects.create(seller=seller, amount=amount, type=order_type,status='COM')
             seller.save()
-            Transaction.objects.create(seller=seller, amount=amount, type=order_type)
+            instance.save()
+
+
+
