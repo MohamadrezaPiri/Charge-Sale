@@ -21,6 +21,7 @@ class TransactionAdmin(admin.ModelAdmin):
 class CreditOrderAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount', 'order_type','status']
     search_fields=['seller']
+    autocomplete_fields=['seller']
     list_filter=['seller']
 
 
