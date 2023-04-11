@@ -17,6 +17,34 @@ class SaleOrder(models.Model):
     amount = models.PositiveIntegerField()
 
 
+
+class Order(models.Model):
+    TYPE_DEPOSIT = 'DEP'
+    TYPE_WITHDRAW = 'WIT'
+
+    STATUS_COMPLETED='COM'
+    STATUS_FAILED='FAI'
+
+    TYPE_CHOICES = [
+        (TYPE_DEPOSIT, 'Deposit'),
+        (TYPE_WITHDRAW, 'Withdraw')
+    ]
+
+    STATUS_CHOICES=[
+        (STATUS_COMPLETED,'Completed'),
+        (STATUS_FAILED,'Failed')
+    ]
+
+    seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
+    amount = models.PositiveIntegerField()
+    status=models.CharField(max_length=3,choices=STATUS_CHOICES,default=STATUS_COMPLETED)
+
+    class Meta:
+        abstract = True
+
+
+
+
 class Transaction(models.Model):
     TYPE_DEPOSIT = 'DEP'
     TYPE_WITHDRAW = 'WIT'
