@@ -13,7 +13,7 @@ class Seller(models.Model):
 
 class SaleOrder(models.Model):
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
-    phone = models.CharField(max_length=255)
+    phone = models.CharField(max_length=11)
     amount = models.PositiveIntegerField()
 
 
