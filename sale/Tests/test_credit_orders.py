@@ -8,7 +8,7 @@ from sale.models import *
 # Tests
 @pytest.mark.django_db
 class TestCreditOrder:
-    def test_credit_order_is_created(self):
+    def test_if_credit_order_is_created(self):
         seller1= baker.make(Seller,credit=0)
         seller2= baker.make(Seller,credit=0)
 
