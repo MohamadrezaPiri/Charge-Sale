@@ -9,3 +9,6 @@ class SaleOrderViewSet(mixins.CreateModelMixin,GenericViewSet):
     
     queryset = SaleOrder.objects.all()
     serializer_class = SaleOrderSerializer
+
+
+
