@@ -17,6 +17,7 @@ def update_seller_credit_and_create_transaction_after_credit_order(sender, insta
             if order_type == 'WIT':
                 if seller.credit >= amount:
                     seller.credit -= amount
+                    instance.status = 'COM'
                     Transaction.objects.create(seller=seller, amount=amount, type=order_type,status='COM')
                 else:
                     instance.status = 'FAI'
@@ -24,6 +25,7 @@ def update_seller_credit_and_create_transaction_after_credit_order(sender, insta
             else:
                 seller.credit += amount
                 Transaction.objects.create(seller=seller, amount=amount, type=order_type,status='COM')
+                instance.status = 'COM'
             seller.save()
             instance.save()
 
