@@ -14,7 +14,7 @@ class SellerAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ['seller', 'amount','type','status']
+    list_display = ['seller', 'amount','status']
     search_fields=['seller']
     
 
