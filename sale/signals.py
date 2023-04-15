@@ -18,10 +18,10 @@ def update_seller_credit_and_create_transaction_after_credit_order(sender, insta
                 if seller.credit >= amount:
                     seller.credit -= amount
                     instance.status = 'COM'
-                    Transaction.objects.create(seller=seller, amount=amount,status='COM')
+                    Transaction.objects.create(seller=seller, amount=-amount,status='COM')
                 else:
                     instance.status = 'FAI'
-                    Transaction.objects.create(seller=seller, amount=amount,status='FAI')
+                    Transaction.objects.create(seller=seller, amount=-amount,status='FAI')
             else:
                 seller.credit += amount
                 Transaction.objects.create(seller=seller, amount=amount,status='COM')
