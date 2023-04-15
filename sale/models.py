@@ -17,6 +17,22 @@ class SaleOrder(models.Model):
     amount = models.PositiveIntegerField()
 
 
+class Transaction(models.Model):    
+    STATUS_COMPLETED='COM'
+    STATUS_FAILED='FAI'
+    STATUS_PENDING = 'PEN'
+
+    STATUS_CHOICES=[
+        (STATUS_COMPLETED,'Completed'),
+        (STATUS_FAILED,'Failed'),
+        (STATUS_PENDING,'Pending')
+    ]
+
+    seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
+    amount = models.IntegerField()
+    status=models.CharField(max_length=3,choices=STATUS_CHOICES,default=STATUS_PENDING)
+
+
 
 class Order(models.Model):
     TYPE_DEPOSIT = 'DEP'
@@ -44,16 +60,6 @@ class Order(models.Model):
     class Meta:
         abstract = True
 
-
-
-class Transaction(Order):
-    TYPE_SALE = 'SALE'
-
-    TYPE_CHOICES = Order.TYPE_CHOICES + [
-        (TYPE_SALE,'Sale')
-    ]
-   
-    type=models.CharField(max_length=4,choices=TYPE_CHOICES,default=TYPE_SALE)
 
 
 class CreditOrder(Order): 
