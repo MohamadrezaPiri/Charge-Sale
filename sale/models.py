@@ -39,7 +39,7 @@ class Order(models.Model):
 
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
     amount = models.PositiveIntegerField()
-    status=models.CharField(max_length=3,choices=STATUS_CHOICES,default=STATUS_COMPLETED)
+    status=models.CharField(max_length=3,choices=STATUS_CHOICES,default=STATUS_PENDING)
 
     class Meta:
         abstract = True
