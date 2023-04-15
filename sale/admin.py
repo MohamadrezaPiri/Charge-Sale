@@ -8,6 +8,7 @@ from .models import SaleOrder, Seller, Transaction, CreditOrder
 @admin.register(Seller)
 class SellerAdmin(admin.ModelAdmin):
     list_display = ['name', 'credit']
+    fields = ['name']
     search_fields=['name']
     list_filter=['name']
 
