@@ -13,6 +13,7 @@ class CreateSaleOrders(TaskSet):
         self.client.post('sell/',json=data)
 
 
-
-
+class WebsiteUser(HttpUser):
+    tasks=[CreateSaleOrders]
+    wait_time = between(1,5)
    
