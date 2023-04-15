@@ -24,6 +24,7 @@ class Order(models.Model):
 
     STATUS_COMPLETED='COM'
     STATUS_FAILED='FAI'
+    STATUS_PENDING = 'PEN'
 
     TYPE_CHOICES = [
         (TYPE_DEPOSIT, 'Deposit'),
@@ -32,7 +33,8 @@ class Order(models.Model):
 
     STATUS_CHOICES=[
         (STATUS_COMPLETED,'Completed'),
-        (STATUS_FAILED,'Failed')
+        (STATUS_FAILED,'Failed'),
+        (STATUS_PENDING,'Pending')
     ]
 
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
