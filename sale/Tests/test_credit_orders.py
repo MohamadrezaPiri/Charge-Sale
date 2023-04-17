@@ -14,7 +14,7 @@ class TestCreditOrder:
         order_type='DEP'
         initial_balance1 = seller.credit
 
-        credit_order = CreditOrder.objects.create(seller=seller,
+        credit_order = baker.make(CreditOrder,seller=seller,
                                                   amount=amount,
                                                   order_type=order_type,
                                                   status='COM'
