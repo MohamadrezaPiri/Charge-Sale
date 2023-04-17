@@ -5,7 +5,7 @@ class CreateSaleOrders(TaskSet):
     @task
     def create_sale_order(self):
         data = {
-            'seller': 3,
+            'seller': 4,
             'phone': '09029813840',
             'amount': 5
         }
