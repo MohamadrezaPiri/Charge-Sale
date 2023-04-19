@@ -24,4 +24,4 @@ class SaleOrderSerializer(serializers.ModelSerializer):
             seller.save()
 
             # Add the order to Transactions list by creating a transaction
-            Transaction.objects.create(seller=seller, amount=amount)
+            Transaction.objects.create(seller=seller, amount=amount, status='COM')
