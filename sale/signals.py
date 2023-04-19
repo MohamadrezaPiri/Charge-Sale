@@ -1,4 +1,4 @@
-from django.db import transaction
+from django.db import transaction as r
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import Transaction, CreditOrder
@@ -7,7 +7,7 @@ from .models import Transaction, CreditOrder
 
 @receiver(post_save, sender=CreditOrder)
 def update_seller_credit_and_create_transaction_after_credit_order(sender, instance, created, **kwargs):
-    with transaction.atomic():
+    with r.atomic():
         if created:
             seller = instance.seller
             amount = instance.amount
