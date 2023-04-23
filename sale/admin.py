@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.urls import reverse
+from django.utils.html import urlencode, format_html
 from .models import SaleOrder, Seller, Transaction, CreditOrder
 
 
@@ -12,6 +14,17 @@ class SellerAdmin(admin.ModelAdmin):
     search_fields=['name']
     list_filter=['name']
     list_per_page = 10
+
+    def transactions_count(self, seller):
+        url = (
+            reverse('admin:sale_seller_changelist')
+            + '?'
+            + urlencode({
+                'seller__id': str(seller.id)
+            }))
+        return format_html('<a href="{}">{} transactions</a>', url, seller.transactions_count)
+
+
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
