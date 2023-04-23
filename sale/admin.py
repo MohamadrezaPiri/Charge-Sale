@@ -23,7 +23,7 @@ class SellerAdmin(admin.ModelAdmin):
             + urlencode({
                 'seller__id': str(seller.id)
             }))
-        return format_html('<a href="{}">{} transactions</a>', url, seller.transactions_count)
+        return format_html('<a href="{}">{}</a>', url, seller.transactions_count)
     
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(
