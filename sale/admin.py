@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import urlencode, format_html
+from django.db.models import Count
 from .models import SaleOrder, Seller, Transaction, CreditOrder
 
 
@@ -23,6 +24,11 @@ class SellerAdmin(admin.ModelAdmin):
                 'seller__id': str(seller.id)
             }))
         return format_html('<a href="{}">{} transactions</a>', url, seller.transactions_count)
+    
+    def get_queryset(self, request):
+        return super().get_queryset(request).annotate(
+            transactions_count=Count('transaction')
+        )
 
 
 
