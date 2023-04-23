@@ -10,7 +10,7 @@ from .models import SaleOrder, Seller, Transaction, CreditOrder
 
 @admin.register(Seller)
 class SellerAdmin(admin.ModelAdmin):
-    list_display = ['name', 'credit']
+    list_display = ['name', 'credit','transactions_count']
     fields = ['name']
     search_fields=['name']
     list_filter=['name']
