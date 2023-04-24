@@ -30,4 +30,10 @@ py manage.py migrate
 ```
 py manage.py runserver
 ```
+## Usage
+- Deposit and withdraw actions will be done in the admin panel
+- To charge a phone number:
+```
+http://127.0.0.1:8000/sell/
+```
 
