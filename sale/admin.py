@@ -16,6 +16,7 @@ class SellerAdmin(admin.ModelAdmin):
     list_filter=['name',CreditFilter]
     list_per_page = 10
 
+    @admin.display(ordering='transactions')
     def transactions(self, seller):
         url = (
             reverse('admin:sale_seller_changelist')
