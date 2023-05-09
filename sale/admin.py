@@ -10,24 +10,24 @@ from .models import SaleOrder, Seller, Transaction, CreditOrder
 
 @admin.register(Seller)
 class SellerAdmin(admin.ModelAdmin):
-    list_display = ['name', 'credit','transactions_count']
+    list_display = ['name', 'credit','transactions']
     fields = ['name']
     search_fields=['name']
     list_filter=['name']
     list_per_page = 10
 
-    def transactions_count(self, seller):
+    def transactions(self, seller):
         url = (
             reverse('admin:sale_seller_changelist')
             + '?'
             + urlencode({
                 'seller__id': str(seller.id)
             }))
-        return format_html('<a href="{}">{}</a>', url, seller.transactions_count)
+        return format_html('<a href="{}">{}</a>', url, seller.transactions)
     
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(
-            transactions_count=Count('transaction')
+            transactions=Count('transaction')
         )
 
 
