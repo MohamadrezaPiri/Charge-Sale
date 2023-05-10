@@ -50,6 +50,7 @@ class SellerAdmin(admin.ModelAdmin):
 class TransactionAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount','status']
     list_filter = ['status','seller',TransactionTypeFilter]
+    list_select_related = ['seller']
     list_per_page = 10
     search_fields=['seller']
     autocomplete_fields = ['seller']
