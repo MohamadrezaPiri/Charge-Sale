@@ -49,8 +49,9 @@ class SellerAdmin(admin.ModelAdmin):
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount','status']
-    search_fields=['seller']
+    list_filter = ['status','seller']
     list_per_page = 10
+    search_fields=['seller']
     
 
 @admin.register(CreditOrder)
