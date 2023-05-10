@@ -52,6 +52,7 @@ class TransactionAdmin(admin.ModelAdmin):
     list_filter = ['status','seller',TransactionTypeFilter]
     list_per_page = 10
     search_fields=['seller']
+    autocomplete_fields = ['seller']
     
 
 @admin.register(CreditOrder)
