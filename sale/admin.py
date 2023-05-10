@@ -70,5 +70,6 @@ class CreditOrderAdmin(admin.ModelAdmin):
 @admin.register(SaleOrder)
 class SaleOrderAdmin(admin.ModelAdmin):
     list_display=['seller','phone','amount']
-    autocomplete_fields=['seller']
     list_per_page = 10
+    autocomplete_fields=['seller']
+    search_fields = ['seller']
