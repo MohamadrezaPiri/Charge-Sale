@@ -15,6 +15,7 @@ class SellerAdmin(admin.ModelAdmin):
     list_per_page = 10
     fields = ['name']
     search_fields=['name']
+    actions = ['clear_transactions']
 
     @admin.display(ordering='transactions')
     def transactions(self, seller):
