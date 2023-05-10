@@ -59,10 +59,11 @@ class TransactionAdmin(admin.ModelAdmin):
 @admin.register(CreditOrder)
 class CreditOrderAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount', 'order_type','status']
+    list_select_related = ['seller']
+    list_per_page = 10
     fields = ['seller','order_type','amount']
     search_fields=['seller']
     autocomplete_fields=['seller']
-    list_per_page = 10
 
 
 @admin.register(SaleOrder)
