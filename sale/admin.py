@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils.html import urlencode, format_html
 from django.db.models import Count
 from .models import SaleOrder, Seller, Transaction, CreditOrder
-from .filters import CreditFilter, TransactionCountFilter
+from .filters import CreditFilter, TransactionCountFilter, TransactionTypeFilter
 
 # Register your models here.
 
@@ -49,7 +49,7 @@ class SellerAdmin(admin.ModelAdmin):
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount','status']
-    list_filter = ['status','seller']
+    list_filter = ['status','seller',TransactionTypeFilter]
     list_per_page = 10
     search_fields=['seller']
     
