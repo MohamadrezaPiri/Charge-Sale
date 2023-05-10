@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.urls import reverse
 from django.utils.html import urlencode, format_html
 from django.db.models import Count
@@ -11,10 +11,10 @@ from .filters import CreditFilter, TransactionCountFilter
 @admin.register(Seller)
 class SellerAdmin(admin.ModelAdmin):
     list_display = ['name', 'credit','transactions']
-    fields = ['name']
-    search_fields=['name']
     list_filter=['name',CreditFilter, TransactionCountFilter]
     list_per_page = 10
+    fields = ['name']
+    search_fields=['name']
 
     @admin.display(ordering='transactions')
     def transactions(self, seller):
@@ -30,6 +30,19 @@ class SellerAdmin(admin.ModelAdmin):
         return super().get_queryset(request).annotate(
             transactions=Count('transaction')
         )
+    
+    @admin.action(description="Clear Transactions")
+    def clear_transactions(self, request, queryset):
+        total_transactions_count = sum(seller.transaction_set.count() for seller in queryset)
+
+        for seller in queryset:
+            seller.transaction_set.all().delete()
+
+        self.message_user(
+            request,
+            f'{total_transactions_count} were successfully removed',
+            messages.SUCCESS
+        )    
 
 
 @admin.register(Transaction)
