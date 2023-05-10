@@ -60,6 +60,7 @@ class TransactionAdmin(admin.ModelAdmin):
 class CreditOrderAdmin(admin.ModelAdmin):
     list_display = ['seller', 'amount', 'order_type','status']
     list_select_related = ['seller']
+    list_filter = ['status','order_type']
     list_per_page = 10
     fields = ['seller','order_type','amount']
     search_fields=['seller']
