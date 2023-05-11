@@ -71,6 +71,7 @@ class CreditOrderAdmin(admin.ModelAdmin):
 class SaleOrderAdmin(admin.ModelAdmin):
     list_display=['seller','phone','amount']
     list_filter = ['seller']
+    list_select_related = ['seller']
     list_per_page = 10
     autocomplete_fields=['seller']
     search_fields = ['seller']
